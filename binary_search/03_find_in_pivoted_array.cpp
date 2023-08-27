@@ -40,8 +40,9 @@ int binarySearch(vector<int>& arr, int s, int e, int key){
 int findPosition(vector<int>& arr, int n, int k)
 {
   int pivot = getPivotElement(arr, n);
-  cout << pivot << endl;
-  if(k> arr[0])
+  if(k == arr[pivot])
+    return pivot;
+  else if(k> arr[0])
     return binarySearch(arr, 0, pivot-1, k);
   else if(k < arr[0])
     return binarySearch(arr, pivot, n-1, k);
@@ -49,10 +50,10 @@ int findPosition(vector<int>& arr, int n, int k)
 }
 
 int main(){
-  vector<int> arr = {2, 4, 8, 1};
+  vector<int> arr = {2};
 
   int size = arr.size();
-  int k = 1;
+  int k = 2;
   int pos = findPosition(arr, size, k);
   cout << pos << "\t" << arr[pos];
 
