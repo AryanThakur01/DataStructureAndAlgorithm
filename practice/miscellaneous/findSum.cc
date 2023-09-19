@@ -4,15 +4,13 @@
 #include <string.h>
 
 void push(int st[], int MAX, int *top, int value) {
-  if (*top >= MAX) {
+  if (*top >= MAX)
     return; // stack overflow condition assuming stack never overflows
-  }
   st[++(*top)] = value;
 }
 int pop(int st[], int *top) {
-  if (*top == -1) {
+  if (*top == -1)
     return -1; // Makes no sense in the case of assuming stack never overflows
-  }
   return st[(*top)--];
 }
 
@@ -61,7 +59,8 @@ int stringToSum(char str[], int stk[], int *top, int stkMax) {
 
 int main() {
   int top = -1;
-  char arr[][100] = {"12+11-(5+7-(9+8)-5)", "-(5+7-(12+11))+55", "5"};
+  char arr[][100] = {"12+11-(5+7-(9+8)-5)", "-(5+7-(12+11))+55", "555",
+                     "1+(1-((9)))"};
 
   int MAX = 50;
   int st[MAX]; // Assuming maximum depth of the string to be 50
