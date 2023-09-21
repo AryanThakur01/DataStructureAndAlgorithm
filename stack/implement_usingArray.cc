@@ -16,8 +16,8 @@ public:
       cout << "Memory Allocation Failed";
   }
   void MyStack_push(int value) {
-    if (top >= size) {
-      cerr << "*** Memory Allocation Failed for value: " << value;
+    if (top >= size - 1) {
+      cerr << "*** Memory Allocation Failed for value: " << value << endl;
       return;
     }
     stack[++top] = value;
@@ -43,6 +43,16 @@ public:
 
 int main() {
   MyStack st(10);
+  st.MyStack_push(10);
+  st.MyStack_push(20);
+  st.MyStack_push(30);
+  st.MyStack_push(40);
+  st.MyStack_push(50);
+  st.MyStack_push(60);
+  st.MyStack_push(70);
+  st.MyStack_push(80);
+  st.MyStack_push(90);
   st.MyStack_push(100);
+  st.MyStack_push(110);
   return 0;
 }
