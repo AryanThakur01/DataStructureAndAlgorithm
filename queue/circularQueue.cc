@@ -26,12 +26,12 @@ public:
       return -1;
     }
     int ret = q[front];
-    int fInitial = front;
-    front = (front + 1) % size;
-    if (front == rear + 1 && fInitial == rear) {
+    if (front == rear) {
       rear = -1;
       front = -1;
+      return ret;
     }
+    front = (front + 1) % size;
     return ret;
   }
   void display() {
