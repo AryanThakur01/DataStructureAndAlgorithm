@@ -13,145 +13,7 @@ typedef struct doublyNode {
   struct doublyNode *prev;
 } doublyNode;
 
-// Insertion 😈
-void insert_L(node **, int);           // for linear linked list
-void insert_CL(node **, node **, int); // for circular linked list
-void insert_DLL(doublyNode **, int);
-void insert_DCLL(doublyNode **, doublyNode **, int);
-
-// Deletion 😵
-void delete_L(node **, int);           // for linear linked list
-void delete_CL(node **, node **, int); // for linear linked list
-void delete_DLL(doublyNode **, int);
-void delete_DCLL(doublyNode **, doublyNode **, int);
-
-// Show something 😏
-void displayLL(node *);
-void displayCLL(node *);
-void displayDLL(doublyNode *);
-void displayDCLL(doublyNode *);
-
-int main() {
-  node *Lll = NULL;                           // Linear linked list
-  node *Cll = NULL, *tail_Cll = NULL;         // Circular linked list
-  doublyNode *Dll = NULL;                     // Doubly linked list
-  doublyNode *DCll = NULL, *tail_DCll = NULL; // Doubly circular linked list
-
-  int decision = 1;
-
-  // Options for nerds 😎
-  char optionList[][30] = {
-      "  -2: Help\n",
-      "  -1: Clear\n",
-      "   0: Exit\n",
-      "Insert\n",
-      "   1: Singly linear\n",
-      "   2: Singly circular\n",
-      "   3: Doubly linear\n",
-      "   4: Doubly Circular\n",
-      "1234: Auto random insertion\n",
-      "Display\n",
-      "   5: Singly linear\n",
-      "   6: Singly circular\n",
-      "   7: Doubly linear\n",
-      "   8: Doubly Circular\n",
-      "5678: Display All\n",
-      "Deletion\n",
-      "   9: Singly Linear\n",
-      "  10: Singly Circular\n",
-      "  11: Doubly Linear\n",
-      "  12: Doubly Circular\n",
-  };
-  for (int i = 0; i < sizeof(optionList) / 30; i++)
-    printf("%s", optionList[i]);
-
-  // Decision Selector 🙋
-  while (decision) {
-    int num;
-    printf(":");
-    scanf("%d", &decision);
-    getchar();
-    if (decision < 5 && decision > 0 || decision >= 9 && decision <= 12) {
-      printf("Input: ");
-      scanf("%d", &num);
-    }
-    switch (decision) {
-    case -2:
-      system("clear");
-      for (int i = 0; i < sizeof(optionList) / 30; i++)
-        printf("%s", optionList[i]);
-      continue;
-    case -1:
-      system("clear");
-      printf("%s", optionList[0]);
-      continue;
-    case 0:
-      break;
-    case 1:
-      insert_L(&Lll, num);
-      printf("Insertion = ✓\n");
-      continue;
-    case 2:
-      insert_CL(&Cll, &tail_Cll, num);
-      printf("Insertion = ✓\n");
-      continue;
-    case 3:
-      insert_DLL(&Dll, num);
-      printf("Insertion = ✓\n");
-      continue;
-    case 4:
-      insert_DCLL(&DCll, &tail_DCll, num);
-      printf("Insertion = ✓\n");
-      continue;
-    case 1234:
-      for (int i = 10; i < 20; i++) {
-        int num = (rand() % 10) - (rand() % 10);
-        insert_L(&Lll, num);
-        insert_CL(&Cll, &tail_Cll, num);
-        insert_DLL(&Dll, num);
-        insert_DCLL(&DCll, &tail_DCll, num);
-      }
-      continue;
-    case 5:
-      displayLL(Lll);
-      continue;
-    case 6:
-      displayCLL(Cll);
-      continue;
-    case 7:
-      displayDLL(Dll);
-      continue;
-    case 8:
-      displayDCLL(DCll);
-      continue;
-    case 5678:
-      displayLL(Lll);
-      displayCLL(Cll);
-      displayDLL(Dll);
-      displayDCLL(DCll);
-      continue;
-    case 9:
-      delete_L(&Lll, num);
-      continue;
-    case 10:
-      delete_CL(&Cll, &tail_Cll, num);
-      continue;
-    case 11:
-      delete_DLL(&Dll, num);
-      continue;
-    case 12:
-      delete_DCLL(&DCll, &tail_DCll, num);
-      continue;
-    default:
-      printf("**Invalid Operation\n");
-      continue;
-    }
-  }
-
-  return 0;
-}
-
-// --------------------- INSERTION FUNCTIONS ---------------------
+// --------------------- Insertion 😈 ---------------------
 // Singly Linear Linked List
 void insert_L(node **head, int value) {
   node *temp = NULL;
@@ -258,8 +120,7 @@ void insert_DCLL(doublyNode **head, doublyNode **tail, int value) {
 };
 // ---------------------------------------------------------------
 
-// --------------------- DELETION FUNCTIONS ---------------------
-
+// --------------------- Deletion 😵 ---------------------
 // Singly Linear Linked List
 void delete_L(node **head, int value) {
   if (*head == NULL) {
@@ -385,8 +246,7 @@ void delete_DCLL(doublyNode **head, doublyNode **tail, int value) {
 };
 // ---------------------------------------------------------------
 
-// ----------------------- DISPLAY FUNCTIONS ---------------------
-
+// ----------------------- Show something 😏 ---------------------
 // Singly Linear Linked List
 void displayLL(node *head) {
   node *it = NULL;
@@ -397,10 +257,9 @@ void displayLL(node *head) {
   }
   printf("Linear Linked List: ");
   while (it != NULL) {
-    printf("|%d|-->", it->info);
+    printf("%d ", it->info);
     it = it->next;
   }
-  printf("NULL\n");
 }
 
 // Singly Circular Linked List
@@ -413,11 +272,10 @@ void displayCLL(node *head) {
   }
   printf("Circular Linked List: ");
   while (it->next != head) {
-    printf("|%d|-->", it->info);
+    printf("%d ", it->info);
     it = it->next;
   }
-  printf("|%d|", it->info);
-  printf("\n");
+  printf(" %d \n", it->info);
 }
 
 // Doubly Linear Linked List
@@ -430,11 +288,10 @@ void displayDLL(doublyNode *head) {
   }
   printf("Doubly Linked List: ");
   while (it != NULL) {
-    printf("|%d|<==>", it->info);
+    printf("%d ", it->info);
     it = it->next;
   }
-  printf("NULL");
-  printf("\n");
+  printf("NULL\n");
 }
 
 // Doubly Circular Linked List
@@ -447,9 +304,92 @@ void displayDCLL(doublyNode *head) {
   }
   printf("Doubly Circular Linked List: ");
   while (it->next != head) {
-    printf("|%d|<==>", it->info);
+    printf("%d ", it->info);
     it = it->next;
   }
-  printf("|%d|\n", it->info);
+  printf("%d\n", it->info);
 }
 // ---------------------------------------------------------------
+
+int main() {
+  node *Lll = NULL;                           // Linear linked list
+  node *Cll = NULL, *tail_Cll = NULL;         // Circular linked list
+  doublyNode *Dll = NULL;                     // Doubly linked list
+  doublyNode *DCll = NULL, *tail_DCll = NULL; // Doubly circular linked list
+
+  int decision = 1;
+
+  // Options for nerds 😎
+  printf("Insert\n");
+  printf(" 1: Singly linear\n");
+  printf(" 2: Singly circular\n");
+  printf(" 3: Doubly linear\n");
+  printf(" 4: Doubly Circular\n");
+  printf("Display\n");
+  printf(" 5: Singly linear\n");
+  printf(" 6: Singly circular\n");
+  printf(" 7: Doubly linear\n");
+  printf(" 8: Doubly Circular\n");
+  printf("Deletion\n");
+  printf(" 9: Singly Linear\n");
+  printf("10: Singly Circular\n");
+  printf("11: Doubly Linear\n");
+  printf("12: Doubly Circular\n");
+
+  // Decision Selector 🙋
+  while (decision) {
+    int num;
+    printf("Siddharth >>");
+    scanf("%d", &decision);
+    getchar();
+    if (decision < 5 && decision > 0 || decision >= 9 && decision <= 12) {
+      printf("Input: ");
+      scanf("%d", &num);
+    }
+    switch (decision) {
+    case 0:
+      break;
+    case 1:
+      insert_L(&Lll, num);
+      continue;
+    case 2:
+      insert_CL(&Cll, &tail_Cll, num);
+      continue;
+    case 3:
+      insert_DLL(&Dll, num);
+      continue;
+    case 4:
+      insert_DCLL(&DCll, &tail_DCll, num);
+      continue;
+    case 5:
+      displayLL(Lll);
+      continue;
+    case 6:
+      displayCLL(Cll);
+      continue;
+    case 7:
+      displayDLL(Dll);
+      continue;
+    case 8:
+      displayDCLL(DCll);
+      continue;
+    case 9:
+      delete_L(&Lll, num);
+      continue;
+    case 10:
+      delete_CL(&Cll, &tail_Cll, num);
+      continue;
+    case 11:
+      delete_DLL(&Dll, num);
+      continue;
+    case 12:
+      delete_DCLL(&DCll, &tail_DCll, num);
+      continue;
+    default:
+      printf("Invalid Operation\n");
+      continue;
+    }
+  }
+
+  return 0;
+}
