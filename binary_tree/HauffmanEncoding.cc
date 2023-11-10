@@ -17,9 +17,8 @@ struct compare {
 void getEncoding(node *root, string code) {
   if (root == nullptr)
     return;
-  else if (root->letter != '$') {
+  else if (root->letter != '$')
     cout << root->letter << " : " << code << endl;
-  }
   getEncoding(root->left, code + '0');
   getEncoding(root->right, code + '1');
 }
